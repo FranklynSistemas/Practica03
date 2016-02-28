@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>Practica02</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/sudokujs.js"></script>
+	<script src="js/script.js"></script>
+
+</head>
+<body>
+<div align="center">
+	<h1>Práctica 03  -  Electiva Profesional 1</h1>
+	<hr>
+
+<div id="Opciones">
+    <div class="row">
+      <div class="col-sm-2">
+        <select id="Dimension" class="form-control">
+		  <option value="0" selected>Dimensión</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		</select>
+      </div>
+      <div class="col-sm-2">
+        <select id="Nivel" class="form-control">
+		  <option value="0" selected>Dificultad</option>
+		  <option value="1">Fácil</option>
+		  <option value="2">Medio</option>
+		  <option value="3">Difícil</option>  
+		</select>
+      </div> 
+    </div>
+
+</div>
+
+<div id="Juego"></div>
+<button type="submit" class="btn btn-primary btn-lg animated fadeInDownBig" id="NewSudoku" >Nuevo Sudoku</button>
+<button type="submit" class="btn btn-primary btn-lg animated fadeInDownBig" id="Resolver" >Resolver</button>
+<div id="Mensajes"></div>
+
+</div>
+<hr>
+<div align="center">
+<h1> Ingeniería de Sistemas - Universidad de Cundinamarca </h1>
+</div>
+</body>
+</html>

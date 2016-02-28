@@ -1,0 +1,41 @@
+body{
+  background-color: gainsboro;
+}
+
+#Juego {
+	height: 30%;
+    width: 100%;
+}
+
+#Mensajes {
+	height: 30%;
+    width: 30%;
+}
+.td {
+	width: 80px;
+	height: 40px;
+	border: black 2px solid;
+}
+
+#table {
+    border-collapse:separate;
+
+}
+
+#MyTable {
+	
+	border: black 2px solid;
+	margin: 5px;
+ 	padding: 5px;
+
+}
+
+p {
+	font-size: 30px;
+}
+
+#Opciones {
+		
+	margin-left: 40%;
+	
+}
