@@ -34,7 +34,7 @@ $(function()
 
 
     function DibujaSudoku (){
-
+       $('#Mensajes').html("");
        var tds = `<table>
                     <tbody>`;
     	for (var i = 0; i < sudoku.length; i++) {
@@ -46,7 +46,7 @@ $(function()
     				tds += '<tr>';
     				for (var f = 0; f < sudoku[i][j][c].length; f++) {
     					if(sudoku[i][j][c][f]===0){
-			            tds += '<td class="td"><input type="number" class="form-control input" id=id_'+i+j+c+f+'></td>'
+			            tds += '<td class="td"><input type="number"  id=id_'+i+j+c+f+'></td>'
 			          }else{
 			            tds += '<td align="center" class="td">'+sudoku[i][j][c][f]+'</td>';
 			          }
@@ -61,6 +61,23 @@ $(function()
     		tds += `</tbody>
               </table>`;
 			$("#Juego").html(tds);
+
+	$("input").keyup(function() {
+          var oID = $(this).attr("id");
+          //console.log(oID);
+          valida(oID);
+          validaFinDeJuego();
+
+	});
+
+	$("input").keydown(function() {
+          var oID = $(this).attr("id");
+          //console.log(oID);
+          valida(oID);
+          validaFinDeJuego();
+
+	});
+
     }
 
     function ResolverSudoku(){
@@ -94,13 +111,15 @@ $(function()
     }
 
  function valida(id){
- 	var SiValidar = isNaN($("#id_00").val()) && $('#'+id).val() <= Rango  ? true  : false;
+
+ 	var SiValidar = isNaN($("#id_00").val()) && $('#'+id).val() <= Rango && $('#'+id).val() > 0 ? true  : false;
  	
- 	if(SiValidar){
+ 	if($('#'+id).val() != ''){
+ 		if(SiValidar){
 
  	Valor = parseInt($('#'+id).val())
  	var SoloNum = id.split("_")[1];
- 	fila=[],
+ 		fila=[],
  		Cuadrante=[],
  		Columnas=[];
  	//console.log(Valor);
@@ -115,19 +134,7 @@ $(function()
  		};
  		
  	};
- 	//console.log(fila);
- 	//console.log(Cuadrante);
- 	//console.log(Columnas);
- 	//Comienza la validación
-
-	//console.log("En el Cuadrante "+BooCuadrante); 	
-
-	//console.log("En la fila "+ValidaFila(fila,Valor));
-
-	//console.log("En la Columa "+ValidaColumna(Columnas,Valor));
-
-	//console.log("El caso es: "+Casos(ValidaCuadrante(Cuadrante,Valor),ValidaFila(fila,Valor),ValidaColumna(Columnas,Valor)));
-
+ 	
 	switch(Casos(ValidaCuadrante(Cuadrante,Valor),ValidaFila(fila,Valor),ValidaColumna(Columnas,Valor))){
 		case 0: 
 			sudoku[SoloNum.charAt(0)][SoloNum.charAt(1)][SoloNum.charAt(2)][SoloNum.charAt(3)] = Valor;
@@ -159,10 +166,7 @@ $(function()
 			$('#'+id).css("background","#FBFF00");
 			$('#Mensajes').html("<p class='animated zoomInRight' style='color:#FBFF00'>El Valor que ingreso se encuentra en el cuadrante o en la fila</p>");
 		break;
-		default:
-			$('#'+id).css("background","white");
-			$('#Mensajes').html('');
-		break;
+		
 	}
  		//$('#Mensajes').html('');
  	}else{
@@ -170,6 +174,14 @@ $(function()
  		$('#Mensajes').html("<p class='animated zoomInRight' style='color:red'>Los campos deben estar dentro del rango de 0 a "+Rango+" y ser de tipo numerico</p>");
  	}
 
+//Fin primer IF
+ }else{
+ 	$('#'+id).val('');
+ 	$('#'+id).css("background","rgba(0, 0, 0, 0.12)");
+ }
+
+
+ 	
 
  }   
 
@@ -246,14 +258,7 @@ if(cont === (Rango*Rango)){
 
 }
 
-$("input").change(function() {
-                var oID = $(this).attr("id");
-                console.log(oID);
-                valida(oID);
-                validaFinDeJuego();
 
-
-	});
 
 
 $('#NewSudoku').click(function(){
