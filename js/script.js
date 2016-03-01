@@ -34,7 +34,7 @@ $(function()
 
 
     function DibujaSudoku (){
-
+       $('#Mensajes').html("");
        var tds = `<table>
                     <tbody>`;
     	for (var i = 0; i < sudoku.length; i++) {
@@ -64,10 +64,17 @@ $(function()
 
 	$("input").keyup(function() {
           var oID = $(this).attr("id");
-          console.log(oID);
+          //console.log(oID);
           valida(oID);
           validaFinDeJuego();
 
+	});
+
+	$("input").keydown(function() {
+          var oID = $(this).attr("id");
+          //console.log(oID);
+          valida(oID);
+          validaFinDeJuego();
 
 	});
 
@@ -105,14 +112,14 @@ $(function()
 
  function valida(id){
 
- 	var SiValidar = isNaN($("#id_00").val()) && $('#'+id).val() <= Rango  ? true  : false;
+ 	var SiValidar = isNaN($("#id_00").val()) && $('#'+id).val() <= Rango && $('#'+id).val() > 0 ? true  : false;
  	
  	if($('#'+id).val() != ''){
  		if(SiValidar){
 
  	Valor = parseInt($('#'+id).val())
  	var SoloNum = id.split("_")[1];
- 	fila=[],
+ 		fila=[],
  		Cuadrante=[],
  		Columnas=[];
  	//console.log(Valor);
@@ -159,10 +166,7 @@ $(function()
 			$('#'+id).css("background","#FBFF00");
 			$('#Mensajes').html("<p class='animated zoomInRight' style='color:#FBFF00'>El Valor que ingreso se encuentra en el cuadrante o en la fila</p>");
 		break;
-		default:
-			$('#'+id).css("background","white");
-			$('#Mensajes').html('');
-		break;
+		
 	}
  		//$('#Mensajes').html('');
  	}else{
